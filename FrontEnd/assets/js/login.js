@@ -1,36 +1,68 @@
-async function principale() {
-    const categorie = await getCategorieApi();
-    const email = "sophie.bluel@test.tld";
-    const password = "S0phie";
 
-    const login = await postLoginApi(email, password);
-    const token = login.token;
-    console.log(token);
-    sessionStorage.setItem('token', token);
 
-}
+const gallery = document.querySelector(".gallery")
+const gallerieTous = document.querySelectorAll("gallery > div");
+const btn = document.getElementsByClassName("button");
 
+
+
+/* Appel des catégories et des projets */
 
 async function getCategorieApi() {
     const req = await fetch("http://localhost:5678/api/categories");
     const res = await req.json();
-    return res;   
+    return res;  
 }
 
-async function postLoginApi(email, password) {
-    const req = await fetch("http://localhost:5678/api/users/login", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-    const res = await req.json();
-    return res;   
+async function getWorksApi() {
+    const req = await fetch("http://localhost:5678/api/works");
+    const works = await req.json();
+    console.log(works);
+    return works;
 }
 
-principale();
+
+/* Affichage des projets */
+
+async function Projets() {
+    const dataProjets = await getWorksApi();
+    dataProjets.forEach((galleryImg) => {
+        const imgProjet = document.createElement("div");
+        const imgSoB = document.createElement("img");
+        const titleso = document.createElement("h3");
+        imgSoB.src = galleryImg.imageUrl;
+        titleso.innerText = galleryImg.title;
+        imgProjet.appendChild(imgSoB);
+        imgProjet.appendChild(titleso);
+        gallery.appendChild(imgProjet);       
+    });
+}
+
+Projets(); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 window.onload = () => {
@@ -40,14 +72,14 @@ window.onload = () => {
         filter.addEventListener("click", function(){
             let tag = this.id;
 
-            let images = document.querySelectorAll(".gallery img");
+            let images = document.querySelectorAll("img");
 
             for(let image of images){
                 image.classList.replace("active", "inactive");
 
                 if(tag in image.dataset || tag ==="tous"){
                     image.classList.replace("inactive", "active")
-                 }
+                }
             }
 
             let figcaptions = document.querySelectorAll(".gallery figcaption");
