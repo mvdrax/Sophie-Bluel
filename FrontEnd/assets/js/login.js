@@ -1,17 +1,43 @@
 
 
-const gallery = document.querySelector(".gallery")
-const gallerieTous = document.querySelectorAll("gallery > div");
+const gallery = document.querySelector(".gallery"); 
+const gallerydiv = document.querySelectorAll("gallery > div");
 const btn = document.getElementsByClassName("button");
+const filters = document.querySelector(".filters");
 
 
+
+
+const CatAll = document.createElement("button");
+CatAll.setAttribute("categoryId", "0");
+CatAll.setAttribute("class", "button");
+CatAll.innerText = "Tous";
+CatAll.addEventListener("click", () => {
+    gallerydiv.forEach((div) => (div.style.display = "block"));
+});
+filters.appendChild(CatAll);
+
+
+
+async function button() {
+    const filtersbtn = await getCategorieApi();
+    filtersbtn.forEach((btn) => {
+        const filtersbtns = document.createElement("button");
+        filtersbtns.setAttribute("categoryId", "btn.id");
+        filtersbtns.setAttribute("class" , "button");
+        filtersbtns.innerText = btn.name;
+        filters.appendChild(filtersbtns);
+    });
+}
+
+button();
 
 /* Appel des catégories et des projets */
 
 async function getCategorieApi() {
     const req = await fetch("http://localhost:5678/api/categories");
-    const res = await req.json();
-    return res;  
+    const categories = await req.json();
+    return categories;   
 }
 
 async function getWorksApi() {
@@ -39,6 +65,11 @@ async function Projets() {
 }
 
 Projets(); 
+
+
+
+
+
 
 
 
