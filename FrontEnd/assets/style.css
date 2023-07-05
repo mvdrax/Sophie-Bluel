@@ -90,6 +90,7 @@ nav ul {
 	list-style-type: none;
 
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
@@ -125,21 +126,58 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filters {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+#tous,
+#objets,
+#apmts,
+#hetr {
+	font-size: 1.2em;
+	color: #1D6154;
+	border: 2px;
+    border-color: #1D6154;
+}
+
+.filters button {
+	border: 2px solid #1D6154;
+	list-style: none;
+	border-radius: 20px;
+	padding: 5px;
+	padding-right: 5px;
+    padding-left: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.filters button:hover {
+	color: white;
+    background: #1D6154;
+}
+
 .gallery {
 	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+display: flex;
+grid-template-columns: 1fr 1fr 1fr;
+grid-column-gap: 20px;
+grid-row-gap: 20px;
+flex-direction: row;
+flex-wrap: wrap;
+margin-left: 100px;
+gap: 10px;
 }
 
 .gallery img {
-	width: 100%;
+	width: 300px;
 
 }
 
 .gallery .active{
-	width: 100%;
+	width: 300px;
 }
 
 .gallery .inactive{
@@ -209,4 +247,29 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+/* Page Login */
+
+.titlelogin {
+	display: flex;
+	justify-content: center;
+    padding-top: 60px;
+}
+
+
+h7 {
+    text-decoration-line: underline;
+	display: flex;
+	justify-content: center;
+
+}
+
+a:link { 
+    color: black;
+} 
+
+.ftlogin {
+	margin-top: 400px;
+}
+
 
