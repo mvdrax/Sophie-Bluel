@@ -122,6 +122,172 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+.changes {
+	display: none;
+	position: relative;
+	top: -53px;
+	left: 700px
+}
+
+.changes a {
+	position: relative;
+	left: 10px;
+	color: black;
+	bottom: -2px;
+}
+
+
+.chgicon {
+	-webkit-text-stroke: 0px black;
+	background: black;
+	  background-clip: border-box;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 19px;
+}
+
+/* Partie modals */
+
+.modaldisplay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+
+.whiteboxmodal1 {
+	overflow: auto;
+	width: 40%;
+	height: 90%;
+	padding: 20px;
+	background-color: white;
+	border-radius: 15px;
+}
+
+.title-modal {
+	font-weight: 400;
+	font-size: 26px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.btnmodal1bloc {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.btnmodal1 {
+	font-family: 'Syne';
+	font-weight: 700;
+	background-color: #1D6154;
+	width: 250px;
+	text-align: center;
+	border-radius: 60px ;
+	vertical-align: baseline;
+	margin-top: 40px;
+}
+
+.btnmodal1txt {
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-top: 11px;
+	margin-bottom: 9px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button a:link {
+	color: white;
+	text-decoration: none;
+}
+
+button a:visited {
+	color: white;
+}
+
+.spm-glr {
+	color: #D65353;
+	margin-top: 15px;
+} 
+#modalgalery {
+	width: 100%;
+display: flex;
+grid-template-columns: 1fr 1fr 1fr;
+grid-column-gap: 5px;
+grid-row-gap: 5px;
+flex-direction: row;
+flex-wrap: wrap;
+margin-left: 50px;
+gap: 10px;
+}
+
+
+.img-container {
+    height: 70%;
+}
+
+
+.img-container img {
+	width: 100%;
+
+}
+
+.IMGProjet {
+    width: 100px;
+	height: 160px;
+}
+
+.edittxt {
+	height: 20px;
+position: relative;
+top: 26px
+}
+
+.sqr-box i {
+	color: black;
+	position: relative;
+	bottom: 147px;
+	font-size: 24px;
+	left: 73px;
+}
+
+.sqr-box2 i {
+	color: black;
+position: relative;
+bottom: 171px;
+font-size: 24px;
+left: 48px;
+}
+
+.box-trash i {
+	color: white;
+	position: relative;
+	bottom: 128px;
+	font-size: 14px;
+	left: 77px;
+	z-index: 1;
+}
+
+.box-arrow i {
+	color: white;
+	position: relative;
+	bottom: 190px;
+	font-size: 14px;
+	left: 51px;
+	z-index: 1;
+}
+
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
@@ -133,10 +299,7 @@ li:hover {
 	gap: 20px;
 }
 
-#tous,
-#objets,
-#apmts,
-#hetr {
+.filters button {
 	font-size: 1.2em;
 	color: #1D6154;
 	border: 2px;
@@ -271,5 +434,3 @@ a:link {
 .ftlogin {
 	margin-top: 400px;
 }
-
-
