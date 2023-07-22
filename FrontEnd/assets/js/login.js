@@ -1,129 +1,59 @@
 
+const formInfos = document.querySelector("#form1");
 
-const gallery = document.querySelector(".gallery"); 
-const gallerydiv = document.querySelectorAll("gallery > div");
-const btn = document.getElementsByClassName("button");
-const filters = document.querySelector(".filters");
+// Fonction d'auth à partir des informations de l'API
+formInfos.addEventListener("submit", async function (event) {
+  // la page ne se rechargera plus en gardant les valeurs entréees
+  event.preventDefault();
+  // Création de l'objet "userInfos"
+  // Récupération de la balise + la valeur entrée de "input[type"email"]"
+  const email = document.querySelector("#email").value;
+  // Récupération de la balise + la valeur entrée de "input[type"password"]"
+  const password = document.querySelector("#rmdp").value;
+  // Création d'un objet, contiennent les valeurs récupérées précédemment
+  const userInfos = { email, password };
 
-
-
-
-const CatAll = document.createElement("button");
-CatAll.setAttribute("categoryId", "0");
-CatAll.setAttribute("class", "button");
-CatAll.innerText = "Tous";
-CatAll.addEventListener("click", () => {
-    gallerydiv.forEach((div) => (div.style.display = "block"));
-});
-filters.appendChild(CatAll);
-
-
-
-async function button() {
-    const filtersbtn = await getCategorieApi();
-    filtersbtn.forEach((btn) => {
-        const filtersbtns = document.createElement("button");
-        filtersbtns.setAttribute("categoryId", "btn.id");
-        filtersbtns.setAttribute("class" , "button");
-        filtersbtns.innerText = btn.name;
-        filters.appendChild(filtersbtns);
-    });
-}
-
-button();
-
-/* Appel des catégories et des projets */
-
-async function getCategorieApi() {
-    const req = await fetch("http://localhost:5678/api/categories");
-    const categories = await req.json();
-    return categories;   
-}
-
-async function getWorksApi() {
-    const req = await fetch("http://localhost:5678/api/works");
-    const works = await req.json();
-    console.log(works);
-    return works;
-}
-
-
-/* Affichage des projets */
-
-async function Projets() {
-    const dataProjets = await getWorksApi();
-    dataProjets.forEach((galleryImg) => {
-        const imgProjet = document.createElement("div");
-        const imgSoB = document.createElement("img");
-        const titleso = document.createElement("h3");
-        imgSoB.src = galleryImg.imageUrl;
-        titleso.innerText = galleryImg.title;
-        imgProjet.appendChild(imgSoB);
-        imgProjet.appendChild(titleso);
-        gallery.appendChild(imgProjet);       
-    });
-}
-
-Projets(); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.onload = () => {
-    let filters = document.querySelectorAll(".filters div");
-
-    for(let filter of filters){
-        filter.addEventListener("click", function(){
-            let tag = this.id;
-
-            let images = document.querySelectorAll("img");
-
-            for(let image of images){
-                image.classList.replace("active", "inactive");
-
-                if(tag in image.dataset || tag ==="tous"){
-                    image.classList.replace("inactive", "active")
-                }
-            }
-
-            let figcaptions = document.querySelectorAll(".gallery figcaption");
-
-            for(let figcaption of figcaptions){
-                figcaption.classList.replace("active", "inactive");
-
-                if(tag in figcaption.dataset || tag ==="tous"){
-                    figcaption.classList.replace("inactive", "active")
-                }
-            }
-        });
+  /* "fetch" pour envoyer une requête HTTP à l’URL spécifiée
+     "fetch" renvoie une promesse qui résout en un objet "Response"
+     Le mot-clé "await" est utilisé pour attendre que la promesse 
+     soit résolue avant de continuer
+  */
+  
+  // "auth" signiifie "authentification"
+  const authInfos = await fetch(
+    "http://localhost:5678/api/users/login",
+    {
+      // method: "POST" : signifie que des données seront envoyées au serveur
+      method: "POST",
+      // headers : indiquent que les données sont en JSON
+      headers: { "Content-Type": "application/json" },
+      // La requête est créer en convertissant "userInfos" en JSON
+      body: JSON.stringify(userInfos),
     }
+  );
 
+  // Extraction des données JSON de la réponse HTTP, stocké dans "authResponse"
+  const authResponse = await authInfos.json();
+  // Récupération du jeton d'auth (token)
+  const authToken = authResponse.token;
+  // Vérification de la réponse HTTP en accédant à la propriété "ok" de l'objet "Response"
+  const authState = authInfos.ok;
 
-}
+  // Si connecté alors
+  if (authState === true) {
+    // Tu me stock le token dans  "authToken"
+    sessionStorage.setItem("authToken", authToken);
+    // Tu me stock la connexion (200 connected) "authToken"
+    sessionStorage.setItem("authState", authState);
+    // Me redrige vers la page "index.html"
+    window.location.replace("index.html");
+    // Sinon
+  } else {
+    // Récupération de la class "errorUserNotification"
+    const errorUserNotification = document.querySelector(
+      ".errorUserNotification"
+    ); // Message d'erreur
+    errorUserNotification.innerText = "Email ou mot de passe incorrect.";
+    errorUserNotification.style.color = "red";
+  }
+});
