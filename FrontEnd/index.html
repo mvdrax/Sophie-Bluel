@@ -9,9 +9,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-
-	<script src="./assets/js/login.js" defer></script>
+	<script
+    src="https://kit.fontawesome.com/2a4ae6f608.js"
+    crossorigin="anonymous"
+    ></script>
 	<script src="./assets/js/index.js" defer></script>
+	
 </head>
 <body>
 <header>
@@ -20,7 +23,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<li><div id="login">login</div></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -39,6 +42,53 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
+		<div class="changes">
+			<i class="fa-sharp fa-regular fa-pen-to-square chgicon"></i>
+			<p><a href="#modal1" class="modal1js">modifier</a></p>
+		</div>
+		<aside id="modal1" class="modaldisplay">
+			<div class="whiteboxmodal1 js-modal-stop">
+					<i class="fa-solid fa-xmark js-close-modal"></i>
+					<p class="title-modal">Galerie photo</p>
+					<div id="modalgalery" class="modalg">
+					</div>
+					<div class="btnmodal1bloc">
+						<button class="btnmodal1">
+								<p class="btnmodal1txt"><a href="#modal2" class="modaljs2">Ajouter une photo</a></p>
+						</button>
+						<p class="spm-glr">Supprimer la galerie</p>
+					</div>
+				</div>
+		</aside>
+		<aside id="modal2" class="modaldisplay">
+			<div class="modal-white-2 js-modal-stop">
+				<div class="modalicns"><i class="fa-solid fa-arrow-left"></i>
+				<i class="fa-solid fa-xmark js-close-modal"></i>
+			    </div>
+				<p>Ajout photo</p>
+				<div class="ajout-photo">
+					<div class="border-modal border-modal-size border-modal2">
+					<div class="box-modal2">
+						<div class="box-modal2-photo">
+							<i class="fa-sharp fa-regular fa-image logo-ajout-photo"></i>
+							<button class="button-ajout-photo">+ Ajouter photo</button>
+							<p class="desc-ajout-photo">jpg, png : 4mo max</p>
+						</div>
+					</div>
+					<form action="" class="label-ajout">
+						<div class="label-text"><label for=""><p class="form-titre">Titre</p>
+							<input type="text" class="form-size textUn">
+						</label></div>
+						<div class="label-text"><label for=""><p class="form-categorie">Catégorie</p>
+							<select name="" id="" class="form-size catUn">
+								<option value=""></option>
+							</select>
+						</label></div>
+				</form>
+			</div>
+			<button id="validerButton" class="valid-ajout-photo">Valider</button>
+			</div>
+		</aside>
 		<section class="filters">
 		</section>
 		<div class="gallery">
