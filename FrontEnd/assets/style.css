@@ -161,7 +161,8 @@ li:hover {
 	display: none;
 }
 
-.whiteboxmodal1 {
+.whiteboxmodal1,
+.whiteboxmodal2 {
 	overflow: auto;
 	width: 40%;
 	height: 90%;
@@ -286,6 +287,31 @@ left: 48px;
 	left: 51px;
 	z-index: 1;
 }
+
+
+
+/* Modal 2 */
+
+.box-modal2-photo {
+	background-color: #E8F1F6;
+width: 400px;
+height: 160px;
+display: flex;
+justify-content: center;
+}
+
+.box-modal2 {
+	justify-content: center;
+	display: flex;
+}
+
+
+
+
+
+
+
+
 
 
 #portfolio h2 {
