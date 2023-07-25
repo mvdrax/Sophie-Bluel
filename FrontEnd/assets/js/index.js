@@ -219,48 +219,62 @@ async function projetModal() {
     ModalGalery.appendChild(imgProjet);
     imgContainer.className = "img-container";
   });
-  deleteProject();
+  deletefct();
 }
 
 projetModal();
 
 
+/* Alternance modal1 à modal2 */
 
 
+const firstmodal = document.querySelector("#modal1");
+const scdmodal = document.querySelector("#modal2");
+const btnmdl1to2 = document.querySelector(".modaljs2");
 
-
-
-
-
-
-window.onload = () => {
-    let filters = document.querySelectorAll(".filters div");
-
-    for(let filter of filters){
-        filter.addEventListener("click", function(){
-            let tag = this.id;
-
-            let images = document.querySelectorAll("img");
-
-            for(let image of images){
-                image.classList.replace("active", "inactive");
-
-                if(tag in image.dataset || tag ==="tous"){
-                    image.classList.replace("inactive", "active")
-                }
-            }
-
-            let figcaptions = document.querySelectorAll(".gallery figcaption");
-
-            for(let figcaption of figcaptions){
-                figcaption.classList.replace("active", "inactive");
-
-                if(tag in figcaption.dataset || tag ==="tous"){
-                    figcaption.classList.replace("inactive", "active")
-                }
-            }
-        });
-    }
-
-
+function AppOfMdl2() {
+    btnmdl1to2.addEventListener("click", function () {
+    scdmodal.style.display = "flex";
+    firstmodal.style.display = "none";
+  });
 }
+
+AppOfMdl2();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const authToken = sessionStorage.getItem("authToken");
+  
+            async function deletefct (id) {
+            const response =  await fetch(`http://localhost:5678/api/works/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                  Authorization: "Bearer " + sessionStorage.getItem("authToken"),
+                  
+                },
+              });
+              if (authToken === true) {
+                
+                console.log("Projet supprimé avec succès.");
+                
+              } else if (response.status === 401) {
+                console.error("Non autorisé à effectuer cette action.");
+              } else {
+                console.error(
+                  "Erreur lors de la suppression du projet:",
+                  response.status
+                );
+              }
+      }
