@@ -10,8 +10,8 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script
-    src="https://kit.fontawesome.com/2a4ae6f608.js"
-    crossorigin="anonymous"
+      src="https://kit.fontawesome.com/f0189703f2.js"
+      crossorigin="anonymous"
     ></script>
 	<script src="./assets/js/index.js" defer></script>
 	
@@ -48,7 +48,11 @@
 		</div>
 		<aside id="modal1" class="modaldisplay">
 			<div class="whiteboxmodal1 js-modal-stop">
+				    <div class="clsmdlbtnbox">
+				    <button class="clsmodalbtn">
 					<i class="fa-solid fa-xmark js-close-modal"></i>
+				    </button>
+				    </div>
 					<p class="title-modal">Galerie photo</p>
 					<div id="modalgalery" class="modalg">
 					</div>
@@ -62,28 +66,48 @@
 		</aside>
 		<aside id="modal2" class="modaldisplay">
 			<div class="whiteboxmodal2 js-modal-stop">
-				<div class="modalicns"><i class="fa-solid fa-arrow-left"></i>
-				<i class="fa-solid fa-xmark js-close-modal"></i>
+				<div class="modalicns">
+				    <div class="rtrnmodal1btnbox">
+						<button class="rtrnmodal1btn">
+					<i class="fa-solid fa-arrow-left"></i>
+				</button>
 			    </div>
+				<div class="clsmdlbtnbox">
+				    <button class="clsmodalbtn">
+					<i class="fa-solid fa-xmark js-close-modal"></i>
+				    </button>
+				    </div>
+				</div>
 				<p>Ajout photo</p>
 				<div class="ajout-photo">
 					<div class="border-modal border-modal-size border-modal2">
+						<form action="" class="label-ajout">
 					<div class="box-modal2">
 						<div class="box-modal2-photo">
+							<div class="addimagebox">
 							<i class="fa-sharp fa-regular fa-image logo-ajout-photo"></i>
-							<button class="button-ajout-photo">+ Ajouter photo</button>
+							<label for="inputAddImage" class="inputAddImage"
+                >+ Ajouter photo</label
+              >
+              <input
+                type="file"
+                name="inputAddImage"
+                id="inputAddImage"
+                required
+                accept=".jpg, .png"
+              />
 							<p class="desc-ajout-photo">jpg, png : 4mo max</p>
 						</div>
 					</div>
-					<form action="" class="label-ajout">
-						<div class="label-text"><label for=""><p class="form-titre">Titre</p>
-							<input type="text" class="form-size textUn">
-						</label></div>
-						<div class="label-text"><label for=""><p class="form-categorie">Catégorie</p>
-							<select name="" id="" class="form-size catUn">
-								<option value=""></option>
-							</select>
-						</label></div>
+					<label class="workTitle" for="workTitle">Titre</label>
+                    <input type="text" name="workTitle" id="workTitle" required />
+            <label class="categoryListModale" for="categoryListModale">Catégorie</label>
+            <!-- Barre de sélection déroulante -->
+            <select name="categoryListModale" id="categoryListModale" required>
+              <option value="">Sélectionner</option>
+              <!-- Insertion des "categories" via "modale.js" -->
+            </select>
+						</div>
 				</form>
 			</div>
 			<button id="validerButton" class="valid-ajout-photo">Valider</button>
