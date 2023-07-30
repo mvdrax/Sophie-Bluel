@@ -43,13 +43,12 @@ button();
 async function getCategorieApi() {
     const req = await fetch("http://localhost:5678/api/categories");
     const categories = await req.json();
-    return categories;   
+    return categories;
 }
 
 async function getWorksApi() {
     const req = await fetch("http://localhost:5678/api/works");
     const works = await req.json();
-    console.log(works);
     return works;
 }
 
@@ -134,6 +133,10 @@ function displayEditMod() {
 
 
 
+
+
+
+
 /* Ouverture de la première modale*/
 
 
@@ -159,7 +162,17 @@ document.querySelectorAll("modal1js").forEach((a) => {
   });
 
 
+/* Fermer la modale */ 
 
+const clsmdlbtn = document.querySelectorAll(".clsmodalbtn");
+const modaldeux = document.querySelector("#modal2")
+
+for (let i = 0; i < clsmdlbtn.length; i++) {
+    clsmdlbtn[i].addEventListener("click", function () {
+      modaldisplaying.style.display = "none";
+      modaldeux.style.display= "none";
+    });
+  }
 
 
 
@@ -203,6 +216,7 @@ async function projetModal() {
     arrowFour.className = "fa-solid fa-arrows-up-down-left-right";
     arrowFourBox.className = "box-arrow";
     imgProjet.className = "IMGProjet";
+    
     trashIconBox.appendChild(trashIcon);
     imgContainer.appendChild(imgSophie);
     imgContainer.appendChild(trashIconBox);
@@ -218,9 +232,15 @@ async function projetModal() {
     console.log(glrymodalIMG.id);
     ModalGalery.appendChild(imgProjet);
     imgContainer.className = "img-container";
+
+    trashIconBox.addEventListener("click", function () {
+        const id = trashIconBox.getAttribute("id")
+        deletefct(id);
+      });
   });
   deletefct();
 }
+
 
 projetModal();
 
@@ -243,6 +263,7 @@ AppOfMdl2();
 
 
 
+/* Icône de suppression */
 
 
 
@@ -252,29 +273,80 @@ AppOfMdl2();
 
 
 
-
-
-const authToken = sessionStorage.getItem("authToken");
+ 
+   
   
-            async function deletefct (id) {
-            const response =  await fetch(`http://localhost:5678/api/works/${id}`, {
-                method: "DELETE",
-                headers: {
-                    "Access-Control-Allow-Origin": "*",
-                  Authorization: "Bearer " + sessionStorage.getItem("authToken"),
-                  
-                },
-              });
-              if (authToken === true) {
-                
-                console.log("Projet supprimé avec succès.");
-                
-              } else if (response.status === 401) {
-                console.error("Non autorisé à effectuer cette action.");
-              } else {
-                console.error(
-                  "Erreur lors de la suppression du projet:",
-                  response.status
-                );
-              }
-      }
+  async function deletefct (id) {
+    const authToken = sessionStorage.getItem("authToken");
+    console.log(authToken);
+  const response =  await fetch("http://localhost:5678/api/works/" + id, {
+      method: "DELETE",
+      headers: {
+          "Access-Control-Allow-Origin": "*",
+        Authorization: "Bearer " + authToken,
+        
+      },
+    });
+    if (response.ok) {
+      
+      console.log("Projet supprimé avec succès.");
+      id.remove();
+      
+    } else if (response.status === 401) {
+      console.error("Non autorisé à effectuer cette action.");
+    } else {
+      console.error(
+        "Erreur lors de la suppression du projet:",
+        response.status
+      );
+    }
+}
+
+
+
+
+
+/* Ajout d'un fichier sur la modale 2 */
+
+/* --> Afficher l'image sélectionnée */ 
+
+
+const inputAddImage = document.querySelector("#inputAddImage");
+
+inputAddImage.addEventListener("change", function () {
+  // Si la taille du fichier est <= à 4 Mo
+  if (inputAddImage.files[0].size <= 4 * 1024 * 1024) {
+    // Réinitialisation de la zone "project-photo-file-add-container" du DOM
+    const addimageboxxx = document.querySelector (".addimagebox");
+    // Vide le "containerInputAddImg" pour afficher l'image sélectionner (preview)
+    addimageboxxx.innerHTML = "";
+    // Création d'une balise "img"
+    const previewImg = document.createElement("img");
+    // Création d'un objet URL à partir de la "src" sélectionner
+    previewImg.src = URL.createObjectURL(inputAddImage.files[0]);
+    // "modalPreviewImg" enfant de "containerInputAddImg"
+    addimageboxxx.appendChild(previewImg);
+    // Permet de choisir une nouvelle image au clique sur le "preview"
+    previewImg.addEventListener("click", function () {
+      inputAddImage.click();
+    });
+  } else {
+    inputAddImage.value = "";
+    return alert("La taille de l'image ne doit pas être supérieure à 4mo.");
+  }
+});
+
+
+const listeDeroul = document.querySelector("select");
+
+async function modalDeuxCategorie() {
+    const categoriesModale = await getCategorieApi();
+    categoriesModale.forEach((modalCategorie) => {
+      const elementListe = document.createElement("option");
+      elementListe.innerText = modalCategorie.name;
+      elementListe.setAttribute("value", modalCategorie.id);
+      listeDeroul.appendChild(elementListe);
+    });
+  }
+
+modalDeuxCategorie();
