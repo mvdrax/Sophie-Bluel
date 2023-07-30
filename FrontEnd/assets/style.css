@@ -148,6 +148,14 @@ li:hover {
 
 /* Partie modals */
 
+
+
+.clsmdlbtnbox button {
+    border-style: flex;
+	background: none;
+}
+
+
 .modaldisplay {
 	position: fixed;
 	top: 0;
