@@ -4,7 +4,7 @@ const btn = document.getElementsByClassName("button");
 const filters = document.querySelector(".filters");
 const btnchanges = document.querySelector(".changes");
 const modaldisplaying = document.querySelector(".modaldisplay"); 
-
+const portfolio = document.getElementById("portfolio");
 
 
 
@@ -233,11 +233,9 @@ async function projetModal() {
     ModalGalery.appendChild(imgProjet);
     imgContainer.className = "img-container";
 
-    trashIconBox.addEventListener("click", function () {
-        const id = trashIconBox.getAttribute("id")
-        deletefct(id);
-      });
+   
   });
+
   deletefct();
 }
 
@@ -273,35 +271,55 @@ AppOfMdl2();
 
 
 
- 
-   
-  
-  async function deletefct (id) {
-    const authToken = sessionStorage.getItem("authToken");
-    console.log(authToken);
-  const response =  await fetch("http://localhost:5678/api/works/" + id, {
-      method: "DELETE",
-      headers: {
-          "Access-Control-Allow-Origin": "*",
-        Authorization: "Bearer " + authToken,
-        
-      },
-    });
-    if (response.ok) {
-      
-      console.log("Projet supprimé avec succès.");
-      id.remove();
-      
-    } else if (response.status === 401) {
-      console.error("Non autorisé à effectuer cette action.");
-    } else {
-      console.error(
-        "Erreur lors de la suppression du projet:",
-        response.status
-      );
-    }
-}
 
+
+  
+
+    
+
+
+
+const authToken = sessionStorage.getItem("authToken");
+console.log(authToken);
+
+const deletebtn = document.querySelectorAll(".box-trash");
+console.log(deletebtn);
+
+
+
+function deletefct(id) {
+  const authToken = sessionStorage.getItem("authToken");
+console.log(authToken);
+
+const deletebtn = document.querySelectorAll(".box-trash");
+console.log(deletebtn);
+  deletebtn.forEach((icon) => {
+    icon.addEventListener("click", function (event) {
+      event.preventDefault();
+      const id = icon.getAttribute("id");
+      try {
+        const response =  fetch("http://localhost:5678/api/works/" + id, {
+          method: "DELETE",
+          headers: { "Authorization": `Bearer ${authToken}`
+          },
+        });
+        if (response) {
+          console.log("Projet supprimé avec succès.");
+          location.reload();
+        } else if (response.status === 401) {
+          console.error("Non autorisé à effectuer cette action.");
+        } else {
+          console.error(
+            "Erreur lors de la suppression du projet:",
+            response.status
+          );
+        }
+      } catch (error) {
+        console.error("Erreur lors de la requête:", error);
+      }
+    });
+  });
+}
 
 
 
@@ -350,3 +368,80 @@ async function modalDeuxCategorie() {
   }
 
 modalDeuxCategorie();
+
+/* Validation du formulaire */ 
+
+// Récupération des deux "input" et du buton "Valider"
+// const inputAddImage = document.querySelector("#inputAddImage");
+const workTitle = document.querySelector("#workTitle");
+const workCategory = document.querySelector("#categoryListModale");
+const btnforvalid = document.querySelector(".valid-ajout-photo");
+
+// Si les 3 inputs ont une valeurs alors affiche le btn "validForm" en vert
+function checkInputs() {
+  if (inputAddImage.value && workTitle.value && workCategory.value) {
+    btnforvalid.classList.add("valid");
+  } else {
+    btnforvalid.classList.remove("valid");
+  }
+}
+
+inputAddImage.addEventListener("input", checkInputs);
+workTitle.addEventListener("input", checkInputs);
+workCategory.addEventListener("input", checkInputs);
+
+// Au clique sur le bouton "Valider" du "modalForm"
+btnforvalid.addEventListener("click", function (event) {
+  event.preventDefault();
+  // Si les 3 champs sont remplis
+  if (
+    inputAddImage.checkValidity() &&
+    workTitle.checkValidity() &&
+    workCategory.checkValidity() === true
+  ) {
+    // Appel de la fonction pour ajouter un projet
+    addWork();
+  } else {
+    // Récupération de la class "errorAddWork"
+    const errorAddWork = document.querySelector(".errorAddWork");
+    errorAddWork.innerText = "Tout les champs sont requis"; // Message d'erreur
+    errorAddWork.style.color = "red";
+  }
+});
+
+
+
+
+  const previewImg = document.querySelector(".preview-img");
+
+  async function addWork() {
+    // Création d'un nouvel objet "FormData" pour stocker les données du formulaire
+    
+  
+    // Ajoute le fichier sélectionné "inputAddImage" au "formData"
+    const formData = new FormData();
+
+  // Ajoute le fichier sélectionné "inputAddImage" au "formData"
+  formData.append("image", inputAddImage.files[0]);
+  // Ajoute la valeur saisie "workTitle" au "formData"
+  formData.append("title", workTitle.value);
+  // Ajoute la valeur "workCategory" choisie au "formData"
+  formData.append("category", workCategory.value);
+
+
+    const addResponse =  await fetch("http://localhost:5678/api/works", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${authToken}` , },
+
+      body: formData
+    });
+  
+    // Si réponse "ok" alors on ajoute le projet au DOM
+    if (addResponse) {
+        console.log("ajouté(e)");
+        
+
+    } else {
+      return alert("Échec de la l'ajout du projet");
+    }
+  }

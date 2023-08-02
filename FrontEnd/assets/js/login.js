@@ -36,6 +36,7 @@ formInfos.addEventListener("submit", async function (event) {
   const authResponse = await authInfos.json();
   // Récupération du jeton d'auth (token)
   const authToken = authResponse.token;
+  console.log(authToken);
   // Vérification de la réponse HTTP en accédant à la propriété "ok" de l'objet "Response"
   const authState = authInfos.ok;
 
