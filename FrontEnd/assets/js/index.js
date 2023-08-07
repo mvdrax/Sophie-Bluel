@@ -7,7 +7,8 @@ const authToken = sessionStorage.getItem("authToken");
 if (authToken) {
   btnchanges.style.setProperty("display", "flex");
   document.getElementById("login").style.display = "none";
-  // filters.style.setProperty("display", "none");
+  filters.style.setProperty("display", "none");
+  
 }
 
 /* Appel des catégories et des projets */
@@ -114,9 +115,10 @@ async function gestionModal1() {
         method: "DELETE",
         headers: { "authorization": `Bearer ${authToken}` }
       });
-      const res = await req.json();
+      const res = req.json();
 
       if (res) {
+        location.reload();
         gestionModal1();
       }
     });
@@ -187,3 +189,35 @@ for (let btn of btnCloseModal) {
     modal2.style.display = "none";
   });
 }
+
+const btnReturnModal = document.querySelector(".rtrnmodal1btn");
+
+btnReturnModal.addEventListener("click", function () {
+  modal1.style.display = "flex";
+  modal2.style.display = "none";
+});
+
+
+const inputFile = document.querySelector('input[type=file]');
+
+    inputFile.addEventListener('change', () => {
+        const imgUrl = inputFile.files[0];
+        const img = document.createElement('img');
+        
+        const preview = document.querySelector(".addimagebox");
+        const btnAddImg = document.querySelector(".inputAddImage");
+        const txtAddImg = document.querySelector(".desc-ajout-photo");
+        const icnAddImg = document.querySelector(".logo-ajout-photo");
+
+        icnAddImg.style.display = "none";
+        txtAddImg.style.display = "none";
+        btnAddImg.style.display = "none";
+        preview.style.zIndex = "2";
+        
+        const url = new FileReader();
+        url.readAsDataURL(imgUrl);
+        url.onload = function() {
+            img.src = url.result;
+            preview.appendChild(img);
+        };
+    });
