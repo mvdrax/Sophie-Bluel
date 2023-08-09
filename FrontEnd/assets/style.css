@@ -146,7 +146,6 @@ button {
 /** end reset css**/
 body {
 	max-width: 1400px;
-	overflow: hidden;
 	margin: 0 auto;
 	font-family: 'Work Sans';
 	font-size: 14px;
@@ -234,12 +233,65 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 
+
+
+.bannerAdmin {
+	width: 100%;
+	height: 59px;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	gap: 1%;
+	background-color: #000000;
+	color: #ffffff;
+	display: none;
+  }
+  .bannerAdmin i {
+	margin-right: -7px;
+	font-size: 16px;
+  }
+  .bannerAdmin .btnToPost {
+	color: #000;
+	text-align: center;
+	font-size: 14px;
+	font-family: Work Sans;
+	font-weight: 500;
+	border-radius: 60px;
+	background: #fff;
+	width: 216px;
+	height: 38px;
+	flex-shrink: 0;
+	cursor: pointer;
+	 }
+
+
+
+
+
+
+
+
+
 .changes {
 	display: none;
 	position: relative;
 	top: -53px;
 	left: 700px
 }
+
+.editBtnNF {
+	width: 80%;
+	margin: 10px auto;
+	display: flex;
+	flex-direction: row;
+	display: none;
+  }
+
+.editBtnNF  i {
+	margin-right: 8px;
+  }
+
+
 
 .changes a {
 	position: relative;
@@ -267,6 +319,13 @@ li:hover {
 }
 
 
+.clsmdlbtnbox {
+	display: flex;
+position: relative;
+right: -570px;
+top: -20px;
+}
+
 .modaldisplay {
 	position: fixed;
 	top: 0;
@@ -287,6 +346,7 @@ li:hover {
 	padding: 20px;
 	background-color: white;
 	border-radius: 15px;
+	overflow: auto;
 }
 
 .title-modal {
@@ -459,7 +519,7 @@ button a:visited {
 	justify-content: center;
 	display: flex;
 	flex-direction: column;
-	width: 70%;
+	width: 100%;
 }
 
 
@@ -478,28 +538,117 @@ button a:visited {
 }
 
 .addimagebox {
-	display: flex;
-	flex-direction: column;
+	
 }
 
 .logo-ajout-photo {
-	font-size: 70px;
+	
 	font-weight: 100;
-	color: #B9C5CC;
+	color: #CED2ED;
+	width: 100px;
+	margin-left: 50px;
+	font-size: 60px;
+	margin-bottom: -10px;
+margin-top: 10px;
 }
 
+
+.desc-ajout-photo {
+color: #444;
+margin-left: 20px;
+margin-top: 10px;
+}
 
 .inputAddImage {
-	border: 1px black solid;
-	border-radius: 20px;
-	padding: 10px;
+
+
 }
 
 
 
+.addimagebox input[type=file] {
+	
+  }
+
+.addimagebox img {
+	height: 160px;
+	width: 150px;
+	position: relative;
+	object-fit: cover;
+}
+
+.preview-img {
+
+}
+
+#inputAddImage {
+	display: none;
+  }
+  .inputAddImage {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	cursor: pointer;
+	border-radius: 50px;
+	background: #cbd6dc;
+	width: 173px;
+	height: 36px;
+	flex-shrink: 0;
+	margin: 0;
+	color: #306685;
+	margin-top: 20px;
+	
+  }
+  
 
 
 
+#workTitle {
+	height: 35px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.workTitle {
+	margin-bottom: 10px;
+margin-top: 25px;
+}
+
+#categoryListModale {
+	height: 35px;
+font-size: 1.2em;
+border: none;
+box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+background: white;
+}
+
+.categoryListModale {
+	margin-bottom: 10px;
+	margin-top: 25px;
+}
+
+
+#validerButton {
+	font-family: 'Syne';
+font-weight: 700;
+background-color: #1D6154;
+width: 250px;
+text-align: center;
+border-radius: 60px;
+vertical-align: baseline;
+margin-top: 40px;
+padding: 10px;
+color: white;
+position: relative;
+right: -160px;
+margin-bottom: 40px;
+}
 
 
 
