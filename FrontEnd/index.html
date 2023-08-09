@@ -18,6 +18,11 @@
 </head>
 
 <body>
+	<div class="bannerAdmin">
+		<i class="fa-regular fa-pen-to-square"></i>
+		<p>Mode édition</p>
+		<button class="btnToPost">publier les changements</button>
+	  </div>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -33,6 +38,11 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
+				<div class="editBtnNF">
+					<i class="fa-regular fa-pen-to-square"></i>
+					<p>modifier</p>
+				  </div>
+		
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>
@@ -96,9 +106,11 @@
 									<div class="box-modal2-photo">
 										<div class="addimagebox">
 											<i class="fa-sharp fa-regular fa-image logo-ajout-photo"></i>
-											<label for="inputAddImage" class="inputAddImage">+ Ajouter photo</label>
+											<label for="inputAddImage" class="inputAddImage"
+                                            >+ Ajouter photo</label>
 											<input type="file" name="inputAddImage" id="inputAddImage" required
-												accept=".jpg, .png" style="visibility:hidden;" />
+												accept=".jpg, .png" />
+											
 											<p class="desc-ajout-photo">jpg, png : 4mo max</p>
 											<img class="preview-img" src="" alt=" " />
 										</div>
