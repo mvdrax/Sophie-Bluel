@@ -1,6 +1,8 @@
 const gallery = document.querySelector(".gallery");
 const filters = document.querySelector(".filters");
 const btnchanges = document.querySelector(".changes");
+const banneradmin = document.querySelector(".bannerAdmin");
+const btnEditnf = document.querySelector(".editBtnNF");
 
 const authToken = sessionStorage.getItem("authToken");
 
@@ -8,6 +10,8 @@ if (authToken) {
   btnchanges.style.setProperty("display", "flex");
   document.getElementById("login").style.display = "none";
   filters.style.setProperty("display", "none");
+  banneradmin.style.setProperty("display", "flex");
+  btnEditnf.style.setProperty("display", "flex");
   
 }
 
