@@ -141,6 +141,8 @@ table {
 
 button {
 	border: none;
+	background: none;
+cursor: pointer;
 }
 
 /** end reset css**/
@@ -267,8 +269,10 @@ li:hover {
 
 
 
-
-
+#logout {
+	display: none;
+	padding-left: 0;
+}
 
 
 
@@ -326,6 +330,11 @@ right: -570px;
 top: -20px;
 }
 
+.whiteboxmodal1 .clsmdlbtnbox {
+	position: relative;
+top: 0;
+}
+
 .modaldisplay {
 	position: fixed;
 	top: 0;
@@ -354,7 +363,7 @@ top: -20px;
 	font-size: 26px;
 	text-align: center;
 	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 
 .btnmodal1bloc {
@@ -407,12 +416,12 @@ button a:visited {
 	flex-wrap: wrap;
 	margin: 0 auto;
 	column-gap: 6%;
-	row-gap: 5px;
+	row-gap: 20px;
 }
 
 
 .img-container {
-	width: 15%;
+	width: 18%;
 	height: 103px;
 	display: flex;
 	flex-direction: column;
@@ -423,7 +432,7 @@ button a:visited {
 
 .img-container img {
 	width: 100%;
-	height: 80px;
+	height: 200px;
 	object-fit: cover;
 }
 
@@ -649,6 +658,23 @@ position: relative;
 right: -160px;
 margin-bottom: 40px;
 }
+
+
+.validGreen {
+	color: #000;
+}
+
+
+.errorMsgPost {
+	font-size: 18px;
+  font-weight: 500;
+  color: red;
+  margin: 10px;
+}
+
+
+
+
 
 
 
