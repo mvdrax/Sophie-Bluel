@@ -25,7 +25,7 @@ formInfos.addEventListener("submit", async function (event) {
     window.location.replace("index.html");
   } 
   else {
-    const errorUserNotification = document.querySelector(".errorUserNotification");
+    const errorUserNotification = document.querySelector(".erreur-msg");
     errorUserNotification.innerText = "Champs incorrects.";
     errorUserNotification.style.color = "red";
   }

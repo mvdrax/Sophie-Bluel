@@ -12,6 +12,7 @@ if (authToken) {
   filters.style.setProperty("display", "none");
   banneradmin.style.setProperty("display", "flex");
   btnEditnf.style.setProperty("display", "flex");
+  document.getElementById("logout").style.display = "flex";
   
 }
 
@@ -225,3 +226,28 @@ const inputFile = document.querySelector('input[type=file]');
             preview.appendChild(img);
         };
     });
+
+    const btnAddNewFigure = document.querySelector("#validerButton");
+
+    function greenForm() {
+      if (inputAddImage.value && workTitle.value && categoryListModale.value) {
+        btnAddNewFigure.classList.add("validGreen");
+      } else {
+        btnAddNewFigure.classList.remove("validGreen");
+        const errorMsgPost = document.querySelector(".errorMsgPost");
+        errorMsgPost.innerText = "Veuillez compléter tous les champs";
+        
+      }
+    }
+    
+    inputAddImage.addEventListener("input", greenForm);
+    workTitle.addEventListener("input", greenForm);
+    categoryListModale.addEventListener("input", greenForm);
+    
+
+    btnAddNewFigure.addEventListener("click", async function (event) {
+      event.preventDefault();
+      greenForm();
+    })
+  
+
