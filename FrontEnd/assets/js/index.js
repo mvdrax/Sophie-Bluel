@@ -4,6 +4,9 @@ const btnchanges = document.querySelector(".changes");
 const banneradmin = document.querySelector(".bannerAdmin");
 const btnEditnf = document.querySelector(".editBtnNF");
 
+/* Une fois connecté et à l'aide du token récupéré l'administrateur accède
+ à l'interface admin etvoit appaître le bouton permettant de modifier la galerie */
+
 const authToken = sessionStorage.getItem("authToken");
 
 if (authToken) {
@@ -92,6 +95,9 @@ const btnModal1 = document.querySelector(".btnmodal1");
 const modal1 = document.querySelector('#modal1');
 const modal2 = document.querySelector('#modal2');
 
+/* Fonction pour afficher la galerie ainsi que les boutons "flèche" et "poubelle" sur la première modale
++ fonction pour passer à la deuxième modale */ 
+
 btnOpenModal.addEventListener("click", function () {
   gestionModal1();
 });
@@ -105,7 +111,8 @@ async function gestionModal1() {
     const figure = document.createElement("figure");
     figure.className = "img-container";
     figure.innerHTML = `
-        <button value="${element.id}"><i class="fas fa-trash"></i></button>
+        <button value="${element.id}"><i class="fas fa-trash trshicn"></i></button>
+        <button class="btndpl" style="position: absolute;left: 30px;"><i class="fa-solid fa-arrows-up-down-left-right btndplicn"></i></button>
         <img src="${element.imageUrl}">
         <p>éditer</p>
       `;
@@ -136,6 +143,9 @@ async function gestionModal1() {
     gestionModal2();
   })
 }
+
+/* Fonction pour générer la liste des catégories dans le formulaire 
+puis envoyer le formulaire d'ajout d'une image et faire une requête POST */ 
 
 async function gestionModal2() {
   const inputFile = document.querySelector(".box-modal2 input[type=file]");
@@ -186,6 +196,8 @@ async function addNewFigure() {
   }
 }
 
+/* Fonctions pour déclencher la fermeture des modales et le retour de la modale2 vers la modale 1 */
+
 const btnCloseModal = document.querySelectorAll(".clsmdlbtn");
 
 for (let btn of btnCloseModal) {
@@ -201,6 +213,10 @@ btnReturnModal.addEventListener("click", function () {
   modal1.style.display = "flex";
   modal2.style.display = "none";
 });
+
+
+/* Le code suivant permet d'obtenir une preview de l'image que l'on souhaite poster 
++ fonction qui permet de générer un message d'erreur si tous les champs ne sont pas remplis */ 
 
 
 const inputFile = document.querySelector('input[type=file]');
