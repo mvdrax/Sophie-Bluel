@@ -146,6 +146,10 @@ cursor: pointer;
 }
 
 /** end reset css**/
+
+
+
+/* Header et intro */ 
 body {
 	max-width: 1400px;
 	margin: 0 auto;
@@ -329,6 +333,11 @@ position: relative;
 right: -570px;
 top: -20px;
 }
+ 
+
+
+/* Modale 1 */ 
+
 
 .whiteboxmodal1 .clsmdlbtnbox {
 	position: relative;
@@ -430,6 +439,13 @@ button a:visited {
 }
 
 
+
+
+
+
+
+
+
 .img-container img {
 	width: 100%;
 	height: 200px;
@@ -449,6 +465,8 @@ button a:visited {
 	right: 5px;
 	top: 4px;
 }
+
+
 
 .img-container button i {
 	width: 17px;
@@ -514,7 +532,7 @@ button a:visited {
 
 
 
-/* Modal 2 */
+/* Modale 2 */
 
 .box-modal2-photo {
 	background-color: #E8F1F6;
